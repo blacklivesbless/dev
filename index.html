@@ -5,41 +5,82 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Contact Us</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-    }
     form {
-      max-width: 500px;
+      box-sizing: content-box;
+      font-family: Arial, sans-serif;
+      /* max-width: 500px; */
       margin: auto;
+      outline-color: #d4a34f;
     }
-    input, textarea, button {
+    input, textarea, select, button { /* Added 'select' here */
+      box-sizing: content-box;
       width: 100%;
       padding: 10px;
       margin-top: 10px;
+      outline-color: #d4a34f;
     }
-    input {
-      margin-bottom: 10px;
+    input, select { /* Added 'select' here */
+      margin-bottom: 24px;
+      outline-color: #d4a34f;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline-color: #d4a34f;
+      box-shadow: 0 0 10px 0 #ffce7a;
     }
     button {
-      background-color: #007BFF;
-      color: white;
+      background-color: #FDCC76;
+      margin-top: 24px;
+      width: 200px;
+      color: black;
+      border-radius: 8px;
+      padding-top: 15px;
+      padding-bottom: 15px;
       border: none;
+      font-size: 16px;
+      font-weight: semibold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      &:hover {
+        background-color: #ffd780;
+      }
+    }
+    /* Added a style for better organization of name fields */
+    .name-group {
+      display: flex;
+      gap: 20px;
+    }
+    .name-group div {
+      flex: 1; /* Makes sure each name field takes up half the width */
     }
   </style>
 </head>
 <body>
   <form action="https://api.web3forms.com/submit" method="POST">
     <input type="hidden" name="access_key" value="2fa1809b-4cf3-4dce-a178-bc8f153f1542" />
+    
+    <label for="first_name">First Name*</label>
+    <input type="text" name="first_name" id="first_name" required>
+      
+    <label for="last_name">Last Name*</label>
+    <input type="text" name="last_name" id="last_name" required>
+    
+    <label for="topic">Topic*</label>
+    <select name="topic" id="topic" required>
+      <option value="" disabled selected>Select an option</option>
+      <option value="Request a Service">Request a Service</option>
+      <option value="Question">Ask a Question</option>
+      <option value="Volunteer">Volunteer with Us</option>
+      <option value="Other">Other</option>
+    </select>
 
-    <label for="name">Your Name</label>
-    <input type="text" name="name" required>
+    <label for="email">Your Email*</label>
+    <input type="email" name="email" id="email" required>
 
-    <label for="email">Your Email</label>
-    <input type="email" name="email" required>
+    <label for="location">Ward, Stake (optional)</label>
+    <input type="text" name="location" id="location">
 
-    <label for="message">Message</label>
-    <textarea name="message" rows="5" required></textarea>
+    <label for="message">Message*</label>
+    <textarea name="message" id="message" rows="5" required></textarea>
 
     <button type="submit">Send Message</button>
   </form>
